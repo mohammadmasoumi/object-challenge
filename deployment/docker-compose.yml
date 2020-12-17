@@ -9,7 +9,7 @@ volumes:
 
 secrets:
   mongodb_password:
-    file: ./secret/mongo_password
+    file: ./secret/mongodb_password
 
 services:
   mongo:
@@ -21,6 +21,10 @@ services:
     dns:
       - 8.8.8.8
       - 4.2.2.4
+    secrets:
+      - source: mongodb_password
+        uid: "999"
+        mode: 0600
     ports:
       - 27017:27017
     volumes:
