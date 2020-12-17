@@ -1,0 +1,29 @@
+version: "3.6"
+
+networks:
+  object_challenge:
+
+volumes:
+  common-data:
+  mongo-data:
+
+secrets:
+  mongodb_password:
+    file: ./secret/mongo_password
+
+services:
+  mongo:
+    image: mongo
+    env_file:
+      - ./env/mongo.env
+    networks:
+      - object_challenge
+    dns:
+      - 8.8.8.8
+      - 4.2.2.4
+    ports:
+      - 27017:27017
+    volumes:
+      - ./data/mongo/mongo-init.sh:/docker-entrypoint-initdb.d/mongo-init.js:ro
+      - mongo-data:/data/db
+    restart: on-failure:5
