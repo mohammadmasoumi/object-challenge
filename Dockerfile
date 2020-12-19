@@ -17,7 +17,7 @@ RUN apt-get update \
     && pip install -r requirements/production.txt
 
 RUN addgroup -gid $GROUP_ID $USER_NAME
-RUN useradd -u $USER_ID -g $USER_NAME -s /bin/sh $USER_NAME
+RUN useradd -u $USER_ID -g $USER_NAME -ms /bin/bash $USER_NAME
 
 USER $USER_NAME
 

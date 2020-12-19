@@ -2,6 +2,20 @@ version: "3.6"
 
 services:
 
+  challenge:
+    build:
+      context: ../../object_challenge
+      dockerfile: Dockerfile
+    image: challenge
+    container_name: challenge
+    networks:
+      - backend
+      - frontend
+    dns:
+      - 8.8.8.8
+      - 4.2.2.4
+    ports:
+      - 5000:5000
   openresty:
     build:
       context: ./openresty_lua
