@@ -13,7 +13,7 @@ RUN apt-get update \
     && apt-get -y install libsnappy-dev \
     && rm -rf /var/lib/apt/lists/* \
     && pip install pip --upgrade pip \
-    && pip install -r requirements/production.txt \
+    && pip install -r requirements/production.txt
 
 
 RUN addgroup -g $GROUP_ID flask \
