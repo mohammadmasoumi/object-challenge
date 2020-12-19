@@ -16,8 +16,8 @@ RUN apt-get update \
     && pip install -r requirements/production.txt
 
 
-RUN addgroup -g $GROUP_ID flask \
-    && useradd -D -u $USER_ID -G flask flask -s /bin/sh
+#RUN addgroup -g $GROUP_ID flask \
+#    && useradd -D -u $USER_ID -G flask flask -s /bin/sh
 
 USER flask
 

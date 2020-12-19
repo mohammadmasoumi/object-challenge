@@ -1,6 +1,17 @@
 version: "3.6"
 
 services:
+
+  openresty:
+    build:
+      context: ./openresty_lua
+      dockerfile: Dockerfile
+    image: openresty
+    container_name: openresty
+    restart: unless-stopped
+    networks:
+      - backend
+      - frontend
   mongo:
     image: mongo
     container_name: mongodb
