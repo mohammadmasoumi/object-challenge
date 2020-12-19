@@ -9,7 +9,8 @@ COPY / /object_challenge
 
 WORKDIR object_challenge
 
-RUN apt-get -y install libsnappy-dev \
+RUN apt-get update \
+    && apt-get -y install libsnappy-dev \
     && rm -rf /var/lib/apt/lists/* \
     && pip install pip --upgrade pip \
     && pip install -r requirements/production.txt
@@ -21,5 +22,3 @@ USER object_challenge
 
 EXPOSE 5000
 CMD [ "gunicorn", "-w", "4", "--bind", "0.0.0.0:5000", "wsgi"]
-
-
