@@ -16,7 +16,7 @@ RUN apt-get update \
     && pip install pip --upgrade pip \
     && pip install -r requirements/production.txt
 
-RUN groupadd -gid $GROUP_ID $USER_NAME
+RUN groupadd -gid $GROUP_ID $USER_NAME \
     && useradd -u $USER_ID -g $USER_NAME -s /bin/sh $USER_NAME
 
 USER $USER_NAME
