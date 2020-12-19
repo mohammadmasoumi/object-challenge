@@ -5,6 +5,7 @@ from flask_mongoengine import MongoEngine
 from settings import development as settings  # TODO read settings from env
 
 app = Flask(__name__)
+app.debug = True
 
 # mongo db configuration
 app.config['MONGODB_SETTINGS'] = settings.MONGO_CONFIG
