@@ -16,8 +16,8 @@ RUN apt-get update \
     && pip install pip --upgrade pip \
     && pip install -r requirements/production.txt
 
-RUN addgroup -gid $GROUP_ID $USER_NAME
-RUN adduser -u $USER_ID -gid $GROUP_ID --disabled-password --gecos '' $USER_NAME
+RUN groupadd -gid $GROUP_ID $USER_NAME
+    && useradd -u $USER_ID -g $USER_NAME -s /bin/sh $USER_NAME
 
 USER $USER_NAME
 
