@@ -1,3 +1,4 @@
+import logging
 import os
 
 from flask import Flask
@@ -14,6 +15,13 @@ from views import *  # NOQA
 # mongo db configuration
 db = MongoEngine()
 db.init_app(app)
+
+# logging configuration
+handler = logging.StreamHandler()
+logging.basicConfig(
+    level=logging.INFO,
+    format='%(asctime)s | %(levelname)s | %(module)s.%(name)s.%(funcName)s | %(msg)s',
+)
 
 if __name__ == '__main__':
     app.run(debug=True)

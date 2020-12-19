@@ -4,7 +4,7 @@ from base import venv
 
 MONGODB_SETTINGS = {
     'db': venv.get_env_var('MONGO_DB', default='challenge', prefixed=True),
-    'host': venv.get_env_var('MONGO_HOST', default='localhost', prefixed=True),
+    'host': venv.get_env_var('MONGO_HOST', default='mongo', prefixed=True),
     'port': venv.get_env_var('MONGO_PORT', default=27017, prefixed=True),
     'username': venv.get_env_var('MONGO_USERNAME', default='challenge', prefixed=True),
     'password': venv.get_env_var('MONGO_PASSWORD', default='challenge', prefixed=True),
