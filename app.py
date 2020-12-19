@@ -16,11 +16,5 @@ from views import *  # NOQA
 db = MongoEngine()
 db.init_app(app)
 
-app.logger.info("-----------------------------------")
-print(f"PROJECT_ENV: {PROJECT_ENV}")
-for key, value in app.config.items():
-    app.logger.info(f"-- {key}: {value}")
-app.logger.info("-----------------------------------")
-
 if __name__ == '__main__':
     app.run(debug=True)
