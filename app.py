@@ -1,20 +1,20 @@
+import os
+
 from flask import Flask
 from flask_debugtoolbar import DebugToolbarExtension
 from flask_mongoengine import MongoEngine
 
-from settings import development as settings  # TODO read settings from env
+PROJECT_ENV = os.environ.get('ENV', 'development')
 
 app = Flask(__name__)
-app.debug = True
+app.config.from_object(f'settings.{PROJECT_ENV}')
 
 # mongo db configuration
-app.config['MONGODB_SETTINGS'] = settings.MONGO_CONFIG
 db = MongoEngine()
 db.init_app(app)
 
 # debug mode configuration
-app.config['DEBUG_TB_PANELS'] = ['flask_mongoengine.panels.MongoDebugPanel']
 toolbar = DebugToolbarExtension(app)
 
 if __name__ == '__main__':
-    app.run()
+    app.run(debug=True)
