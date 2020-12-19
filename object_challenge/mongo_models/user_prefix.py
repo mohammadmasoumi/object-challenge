@@ -8,6 +8,7 @@ class UserPrefix(mo.Document):
 
     meta = {
         'index_background': True,
+        'collection': 'user_prefixes',
         'indexes': [
             {
                 'fields': [
@@ -15,5 +16,4 @@ class UserPrefix(mo.Document):
                 ]
             },
         ],
-        'collection': 'user_prefixes'
     }

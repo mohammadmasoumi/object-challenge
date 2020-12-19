@@ -2,13 +2,13 @@ import mongoengine as mo
 
 
 class Prefix(mo.Document):
-    id = mo.IntField()
-    prefix = mo.StringField()
+    prefix_id = mo.IntField(null=False)
+    prefix = mo.StringField(null=False)
 
     meta = {
         'index_background': True,
         'indexes': [
-            'id'
+            'prefix_id'
         ],
         'collection': 'prefixes'
     }

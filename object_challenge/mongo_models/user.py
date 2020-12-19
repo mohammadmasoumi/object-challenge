@@ -2,13 +2,13 @@ import mongoengine as mo
 
 
 class User(mo.Document):
-    id = mo.IntField()
-    name = mo.StringField()
+    user_id = mo.IntField(null=False)
+    name = mo.StringField(null=False)
 
     meta = {
         'index_background': True,
         'indexes': [
-            'id'
+            'user_id'
         ],
         'collection': 'users'
     }
