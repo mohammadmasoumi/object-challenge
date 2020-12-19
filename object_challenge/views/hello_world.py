@@ -1,7 +1,7 @@
 from logging import getLogger
 
 from app import app
-from mongo_models import User
+from object_challenge.mongo_models import User
 
 logger = getLogger(__name__)
 

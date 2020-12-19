@@ -1,6 +1,6 @@
 import os
 
-from base import venv
+from object_challenge.base import venv
 
 MONGODB_SETTINGS = {
     'db': venv.get_env_var('MONGO_DB', default='challenge', prefixed=True),
