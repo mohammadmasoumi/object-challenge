@@ -15,11 +15,9 @@ RUN apt-get update \
     && pip install pip --upgrade pip \
     && pip install -r requirements/production.txt
 
-
-#RUN addgroup -g $GROUP_ID flask \
-#    && useradd -D -u $USER_ID -G flask flask -s /bin/sh
-
-USER flask
+#RUN addgroup -g $GROUP_ID flask
+#RUN adduser -D -u $USER_ID -G flask flask -s /bin/sh
+#USER flask
 
 EXPOSE 5000
 CMD [ "gunicorn", "-w", "4", "--bind", "0.0.0.0:5000", "wsgi"]
