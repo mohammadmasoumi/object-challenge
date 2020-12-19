@@ -1,4 +1,7 @@
-# Challenge
+# Object Challenge
+
+![Python application](https://github.com/mohammadmasoumi/object_challenge/workflows/Python%20application/badge.svg?branch=master)
+
 
 This project is a technical challenge project which is powered by flask, docker and openresty.
 
