@@ -1,9 +1,10 @@
-FROM python:3.8.6-alpine3.12
+FROM python:3.8.6
 
 LABEL MAINTAINER="Mohammad Masoumi mohammad.masoomy74@gmail.com"
 
 ENV GROUP_ID=2000 \
-    USER_ID=2000
+    USER_ID=2000 \
+    USER_NAME=flask
 
 COPY / /object_challenge
 
@@ -15,9 +16,10 @@ RUN apt-get update \
     && pip install pip --upgrade pip \
     && pip install -r requirements/production.txt
 
-#RUN addgroup -g $GROUP_ID flask
-#RUN adduser -D -u $USER_ID -G flask flask -s /bin/sh
-#USER flask
+RUN addgroup -gid $GROUP_ID $USER_NAME
+RUN adduser -D -u $USER_ID -G $USER_NAME $USER_NAME -s /bin/sh
+
+USER $USER_NAME
 
 EXPOSE 5000
 CMD [ "gunicorn", "-w", "4", "--bind", "0.0.0.0:5000", "wsgi"]
