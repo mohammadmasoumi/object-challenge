@@ -1,7 +1,6 @@
 version: "3.6"
 
 services:
-
   challenge:
     build:
       context: ../../object_challenge
@@ -16,6 +15,8 @@ services:
       - 4.2.2.4
     ports:
       - 5000:5000
+    depends_on:
+      - mongo
   openresty:
     build:
       context: ./openresty_lua
@@ -26,6 +27,13 @@ services:
     networks:
       - backend
       - frontend
+    ports:
+      - 80:80
+      - 443:443
+    depends_on:
+      - mongo
+    volumes:
+      - ./data/nginx/conf.d:/etc/nginx/conf.d
   mongo:
     image: mongo
     container_name: mongodb
