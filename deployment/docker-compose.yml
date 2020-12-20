@@ -34,7 +34,9 @@ services:
     depends_on:
       - mongo
     volumes:
-      - ./data/nginx/conf.d:/etc/nginx/conf.d
+      - ./data/nginx/conf.d:/etc/nginx/conf.d:ro
+      - ./data/openresty/nginx.conf:/usr/local/openresty/nginx/conf/nginx.conf:ro
+      - ./data/lua:/home/user/lua:ro
   mongo:
     image: mongo
     container_name: mongodb
