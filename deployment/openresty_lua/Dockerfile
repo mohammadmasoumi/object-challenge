@@ -46,6 +46,5 @@ RUN ["luarocks", "install", "lua-resty-session"]
 RUN ["luarocks", "install", "lua-resty-http"]
 RUN ["luarocks", "install", "lua-resty-jwt"]
 RUN ["luarocks", "install", "lua-mongo"]
-RUN ["luarocks", "install", "cbson"]
 
 EXPOSE 80 443 8080
