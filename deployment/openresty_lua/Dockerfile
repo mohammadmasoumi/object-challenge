@@ -1,4 +1,4 @@
-FROM openresty/openresty:1.19.3.1-2-alpine-fat
+FROM openresty/openresty:1.19.3.1-2-focal
 
 # install dependencies
 RUN ["luarocks", "install", "lua-resty-session"]
