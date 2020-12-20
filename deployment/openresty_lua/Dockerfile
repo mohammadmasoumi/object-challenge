@@ -8,14 +8,14 @@ FROM openresty/openresty:1.19.3.1-2-focal
 #    && make \
 #    && sudo make install
 
-RUN apt-get install -y libmongoc-1.0 \
-    && apt-get install -y libbson-1.0
+#RUN apt-get install -y libmongoc-1.0 \
+#    && apt-get install -y libbson-1.0
 
 # install dependencies
 RUN ["luarocks", "install", "lua-resty-session"]
 RUN ["luarocks", "install", "lua-resty-http"]
 RUN ["luarocks", "install", "lua-resty-jwt"]
-RUN ["luarocks", "install", "mongorover"]
+RUN ["luarocks", "install", "resty.moongoo"]
 RUN ["luarocks", "install", "cbson"]
 
 #ADD lib/resty/openidc.lua /usr/local/openresty/lualib/resty/openidc.lua
