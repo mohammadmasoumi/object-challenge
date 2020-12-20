@@ -28,3 +28,11 @@ This project is a technical challenge project which is powered by flask, docker 
  - ```
    docker-compose up -d mongo openresty challenge
    ```
+   
+   
+# Resources
+
+  - [How we reduced the CPU usage of our Lua code][1]
+  
+  
+[1]: https://medium.com/@fabricebaumann/how-we-reduced-the-cpu-usage-of-our-lua-code-cc30d001a328
