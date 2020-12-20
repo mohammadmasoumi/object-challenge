@@ -7,4 +7,4 @@ RUN ["luarocks", "install", "lua-resty-jwt"]
 
 #ADD lib/resty/openidc.lua /usr/local/openresty/lualib/resty/openidc.lua
 
-EXPOSE 80 443
+EXPOSE 80 443 8080
