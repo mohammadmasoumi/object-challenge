@@ -20,7 +20,7 @@ RUN cd ~ \
     && wget https://github.com/mongodb/mongo-c-driver/releases/download/1.17.3/mongo-c-driver-1.17.3.tar.gz \
     && tar xzf mongo-c-driver-1.17.3.tar.gz \
     && cd mongo-c-driver-1.17.3 \
-    && ./configure --disable-automatic-init-and-cleanup \
+#    && ./configure --disable-automatic-init-and-cleanup \
     && make \
     && make install \
     && cd ~ \
