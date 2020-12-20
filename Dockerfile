@@ -22,4 +22,4 @@ RUN useradd -u $USER_ID -g $USER_NAME -ms /bin/bash $USER_NAME
 USER $USER_NAME
 
 EXPOSE 5000
-CMD [ "gunicorn", "-w", "4", "--bind", "0.0.0.0:5000", "wsgi"]
+CMD [ "gunicorn", "app:application", "--config=config.py"]
