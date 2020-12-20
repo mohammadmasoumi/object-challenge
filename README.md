@@ -14,3 +14,17 @@ This project is a technical challenge project which is powered by flask, docker 
   ```shell script
     export  $(cat deployment/env_dir/flask.env | xargs)
   ```
+
+
+# server setup
+
+ - install docker and setup github ssh keys
+ - ```
+   git clone git@github.com:mohammadmasoumi/object_challenge.git
+   ``` 
+ - ```
+   cd /deployment
+   ```
+ - ```
+   docker-compose up -d mongo openresty challenge
+   ```
