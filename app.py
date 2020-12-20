@@ -12,8 +12,7 @@ PROJECT_PATH = os.path.join(PROJECT_ROOT, PROJECT_NAME)
 # app
 app = Flask(__name__)
 app.config.update({'ENV': APP_ENV})
-app.logger.info(f"from_object: {PROJECT_NAME}.settings.{APP_ENV}")
-app.config.from_object(f'{PROJECT_NAME}.{PROJECT_NAME}.settings.{APP_ENV}')
+app.config.from_object(f'{PROJECT_NAME}.settings.{APP_ENV}')
 
 # import views
 from object_challenge.views import *  # NOQA
