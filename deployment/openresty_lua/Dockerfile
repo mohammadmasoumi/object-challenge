@@ -45,5 +45,6 @@ FROM openresty/openresty:1.19.3.1-2-focal
 RUN ["luarocks", "install", "lua-resty-session"]
 RUN ["luarocks", "install", "lua-resty-http"]
 RUN ["luarocks", "install", "lua-resty-jwt"]
+RUN ["luarocks", "install", "luajson"]
 
-EXPOSE 80 443 8080
+EXPOSE 80 443
