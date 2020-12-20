@@ -34,7 +34,7 @@ services:
     depends_on:
       - mongo
     volumes:
-#      - ./data/nginx/conf.d:/etc/nginx/conf.d
+      - ./data/nginx/conf.d:/etc/nginx/conf.d
       - ./data/lua:/etc/lua
   mongo:
     image: mongo
