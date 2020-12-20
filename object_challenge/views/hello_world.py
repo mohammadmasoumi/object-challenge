@@ -1,12 +1,12 @@
 from logging import getLogger
 
-from app import application
+from app import app
 from object_challenge.mongo_models import User
 
 logger = getLogger(__name__)
 
 
-@application.route('/')
+@app.route('/')
 def hello_world():
     print(User.objects.filter())
     return 'Hello World!'
