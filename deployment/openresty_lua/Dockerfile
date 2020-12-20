@@ -15,7 +15,7 @@ FROM openresty/openresty:1.19.3.1-2-focal
 RUN ["luarocks", "install", "lua-resty-session"]
 RUN ["luarocks", "install", "lua-resty-http"]
 RUN ["luarocks", "install", "lua-resty-jwt"]
-RUN ["luarocks", "install", "resty.moongoo"]
+RUN ["luarocks", "install", "lua-mongo"]
 RUN ["luarocks", "install", "cbson"]
 
 #ADD lib/resty/openidc.lua /usr/local/openresty/lualib/resty/openidc.lua
