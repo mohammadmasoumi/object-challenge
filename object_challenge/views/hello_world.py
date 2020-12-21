@@ -9,8 +9,8 @@ logger = getLogger(__name__)
 
 @app.route('/')
 def hello_world():
-    print(User.objects.filter())
-
+    app.logger.info(f"users: {User.objects.filter()}")
+    app.logger.info("-------------------------------")
     response = app.response_class(
         response=json.dumps({"result": "OK"}),
         status=200,
