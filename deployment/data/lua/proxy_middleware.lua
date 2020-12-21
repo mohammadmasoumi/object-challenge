@@ -1,8 +1,6 @@
 local http = require "resty.http"
 local httpc = http.new()
 
-ngx.log(ngx.var.uri)
-
 local challenge_url = "http://challenge:5000/" .. ngx.var.uri
 
 ngx.log(challenge_url)
