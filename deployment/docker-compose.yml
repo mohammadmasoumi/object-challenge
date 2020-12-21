@@ -19,7 +19,7 @@ services:
       - mongo
   openresty:
     build:
-      context: ./openresty_lua
+      context: dockerfile/openresty
       dockerfile: Dockerfile
     image: openresty
     container_name: openresty
@@ -33,7 +33,7 @@ services:
     depends_on:
       - mongo
     volumes:
-      - ./data/nginx/conf.d:/etc/nginx/conf.d:ro
+      - ./data/nginx:/etc/nginx/conf.d:ro
       - ./data/lua:/home/user/lua:ro
   mongo:
     image: mongo
