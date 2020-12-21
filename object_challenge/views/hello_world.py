@@ -1,3 +1,4 @@
+import json
 from logging import getLogger
 
 from app import app
@@ -9,6 +10,10 @@ logger = getLogger(__name__)
 @app.route('/')
 def hello_world():
     print(User.objects.filter())
-    return 'Hello World!'
 
-
+    response = app.response_class(
+        response=json.dumps({"result": "OK"}),
+        status=200,
+        mimetype='application/json'
+    )
+    return response

@@ -18,13 +18,14 @@ app.config.from_object(f'{PROJECT_NAME}.settings.{APP_ENV}')
 # import views
 from object_challenge.views import *  # NOQA
 
+if __name__ != '__main__':
+    gunicorn_logger = logging.getLogger('gunicorn.error')
+    app.logger.handlers = gunicorn_logger.handlers
+    app.logger.setLevel(gunicorn_logger.level)
+
 # mongo db configuration
 db = MongoEngine()
 db.init_app(app)
 
 if __name__ == '__main__':
     app.run(debug=True)
-else:
-    gunicorn_logger = logging.getLogger('gunicorn.error')
-    app.logger.handlers = gunicorn_logger.handlers
-    app.logger.setLevel(gunicorn_logger.level)
