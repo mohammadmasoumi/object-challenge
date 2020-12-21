@@ -1,3 +1,4 @@
+import logging
 import os
 
 from flask import Flask
@@ -22,9 +23,8 @@ db = MongoEngine()
 db.init_app(app)
 
 if __name__ == '__main__':
-    app.logger.info("********************* CONFIG *********************")
-    for key, value in app.config.items():
-        app.logger.info(f"{key}: {value}")
-    app.logger.info("**************************************************")
-
     app.run(debug=True)
+else:
+    gunicorn_logger = logging.getLogger('gunicorn.error')
+    app.logger.handlers = gunicorn_logger.handlers
+    app.logger.setLevel(gunicorn_logger.level)
