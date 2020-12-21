@@ -1,19 +1,35 @@
+ngx.log(ngx.ERR, "REQUEST capturing started")
+json = require("json")
 
-local http = require "resty.http"
---local httpc = http.new()
+function getval(v, def)
+  if v == nil then
+     return def
+  end
+  return v
+end
 
---request section
-local request_method = ngx.req.get_method()
-local request_body = ngx.req.get_body_data()
+local data = {request={}, response={}}
 
---response section
-local response_status = ngx.status
-local response_body = ngx.var.response_body
+local req = data["request"]
+local resp = data["response"]
+req["host"] = ngx.var.host
+req["uri"] = ngx.var.uri
+req["headers"] = ngx.req.get_headers()
+req["time"] = ngx.req.start_time()
+req["method"] = ngx.req.get_method()
+req["get_args"] = ngx.req.get_uri_args()
 
-ngx.say("I have got a request!")
-ngx.say(request_method)
-ngx.say(request_body)
-ngx.say("response!")
-ngx.say(response_status)
-ngx.say(response_body)
 
+req["post_args"] = ngx.req.get_post_args()
+req["body"] = ngx.var.request_body
+
+content_type = getval(ngx.var.CONTENT_TYPE, "")
+
+
+resp["headers"] = ngx.resp.get_headers()
+resp["status"] = ngx.status
+resp["duration"] = ngx.var.upstream_response_time
+resp["time"] = ngx.now()
+resp["body"] = ngx.var.response_body
+
+ngx.log(ngx.CRIT, json.encode(data));
