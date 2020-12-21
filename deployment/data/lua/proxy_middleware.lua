@@ -1,35 +1,12 @@
-ngx.log(ngx.ERR, "REQUEST capturing started")
-json = require("json")
+local http = require "resty.http"
+local httpc = http.new()
 
-function getval(v, def)
-  if v == nil then
-     return def
-  end
-  return v
-end
+local challenge_url = "http://challenge:5000/" .. ngx.var.request_uri
 
-local data = {request={}, response={}}
-
-local req = data["request"]
-local resp = data["response"]
-req["host"] = ngx.var.host
-req["uri"] = ngx.var.uri
-req["headers"] = ngx.req.get_headers()
-req["time"] = ngx.req.start_time()
-req["method"] = ngx.req.get_method()
-req["get_args"] = ngx.req.get_uri_args()
-
-
-req["post_args"] = ngx.req.get_post_args()
-req["body"] = ngx.var.request_body
-
-content_type = getval(ngx.var.CONTENT_TYPE, "")
-
-
-resp["headers"] = ngx.resp.get_headers()
-resp["status"] = ngx.status
-resp["duration"] = ngx.var.upstream_response_time
-resp["time"] = ngx.now()
-resp["body"] = ngx.var.response_body
-
-ngx.log(ngx.CRIT, json.encode(data));
+--ngx.req.get_body_data()
+local res, err = https:request_uri(challenge_url, {
+    method = ngx.req.get_method(),
+    body = ngx.req.get_body_data(),
+    header = ngx.req.get_headers()
+})
+ngx.say("response is:" .. res)
