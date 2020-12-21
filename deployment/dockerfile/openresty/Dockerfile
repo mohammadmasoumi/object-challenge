@@ -42,9 +42,7 @@ FROM openresty/openresty:1.19.3.1-2-focal
 #    && rm -rf mongo-cxx-driver-r3.6.2
 
 # install dependencies
-RUN ["luarocks", "install", "lua-resty-session"]
 RUN ["luarocks", "install", "lua-resty-http"]
-RUN ["luarocks", "install", "lua-resty-jwt"]
 RUN ["luarocks", "install", "luajson"]
 
 EXPOSE 80 443

@@ -10,3 +10,5 @@ logger = getLogger(__name__)
 def hello_world():
     print(User.objects.filter())
     return 'Hello World!'
+
+
