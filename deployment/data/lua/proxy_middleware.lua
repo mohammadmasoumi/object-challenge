@@ -3,7 +3,7 @@ local httpc = http.new()
 
 local challenge_url = "http://challenge:5000/" .. ngx.var.uri
 
-ngx.log(challenge_url)
+ngx.say(challenge_url)
 
 --ngx.req.get_body_data()
 local res, err = https:request_uri(challenge_url, {
