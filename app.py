@@ -15,28 +15,16 @@ app = Flask(__name__)
 app.config.update({'ENV': APP_ENV})
 app.config.from_object(f'{PROJECT_NAME}.settings.{APP_ENV}')
 
-
-@app.route('/')
-def hello_views():
-    response = app.response_class(
-        response=json.dumps({"result": "Ok"}),
-        status=200,
-        mimetype='application/json'
-    )
-    return response
-
-
-# import views
-from object_challenge.views import *  # NOQA
-
-if __name__ != '__main__':
-    gunicorn_logger = logging.getLogger('gunicorn.error')
-    app.logger.handlers = gunicorn_logger.handlers
-    app.logger.setLevel(gunicorn_logger.level)
-
 # mongo db configuration
 db = MongoEngine()
 db.init_app(app)
 
+# import views
+from object_challenge.views import *  # NOQA
+
 if __name__ == '__main__':
     app.run(debug=True)
+else:
+    gunicorn_logger = logging.getLogger('gunicorn.error')
+    app.logger.handlers = gunicorn_logger.handlers
+    app.logger.setLevel(gunicorn_logger.level)
