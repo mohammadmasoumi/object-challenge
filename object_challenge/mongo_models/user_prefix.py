@@ -2,8 +2,8 @@ import mongoengine as mo
 
 
 class UserPrefix(mo.Document):
-    user_pk = mo.IntField(null=False)
-    prefix_pk = mo.IntField(null=False)
+    user_id = mo.IntField(null=False)
+    prefix_id = mo.IntField(null=False)
     is_allowed = mo.BooleanField(default=True)
 
     meta = {
@@ -12,7 +12,7 @@ class UserPrefix(mo.Document):
         'indexes': [
             {
                 'fields': [
-                    'user_pk', 'prefix_pk', 'is_allowed'
+                    'user_id', 'prefix_id', 'is_allowed'
                 ]
             },
         ],

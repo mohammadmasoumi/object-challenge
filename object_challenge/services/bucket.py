@@ -12,11 +12,11 @@ class BucketService:
 
     def is_allowed(self):
         user_prefixes = tuple(UserPrefix._get_collection().aggregate([
-            {'$match': {'user_pk': self.user_id}},
+            {'$match': {'user_id': self.user_id}},
             {'$lookup': {
                 'from': 'prefixes',
-                'localField': 'prefix_pk',
-                'foreignField': 'pk',
+                'localField': 'prefix_id',
+                'foreignField': 'prefix_id',
                 'as': 'user_prefixes',
             }},
             {'$project': {'$user_prefixes': 1, '$is_allowed': 1, '_id': 0}}
