@@ -1,7 +1,11 @@
+
 local http = require "resty.http"
 local cjson = require "cjson"
 
 local httpc = http.new()
+
+
+ngx.log(ngx.DEBUG, ngx.var.flask_webservice)
 
 local challenge_url = "http://" .. ngx.var.flask_webservice .. ngx.var.uri
 local request_header = ngx.req.get_headers()
