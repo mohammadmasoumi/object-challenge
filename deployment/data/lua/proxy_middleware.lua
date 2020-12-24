@@ -4,7 +4,7 @@ local cjson = require "cjson"
 
 local httpc = http.new()
 
-local challenge_url = "http://challenge:8000" .. ngx.var.uri
+local challenge_url = "http://challenge:5000" .. ngx.var.uri
 local request_header = ngx.req.get_headers()
 local request_method = ngx.req.get_method()
 local request_body = ngx.req.get_body_data()
