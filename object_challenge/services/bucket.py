@@ -19,7 +19,7 @@ class BucketService:
                 'foreignField': 'prefix_id',
                 'as': 'user_prefixes',
             }},
-            {'$project': {'$user_prefixes': 1, '$is_allowed': 1, '_id': 0}}
+            {'$project': {'user_prefixes': 1, 'is_allowed': 1, '_id': 0}}
         ]))
 
         for item in user_prefixes:
