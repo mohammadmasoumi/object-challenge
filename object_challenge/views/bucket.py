@@ -14,13 +14,22 @@ BUCKET_VALIDATORS = {
 }
 
 
-@app.route('/bucket', methods=['POST'])
+@app.route('/', methods=['POST', 'GET'])
+def hello_views():
+    response = app.response_class(
+        response=json.dumps({"result": "Ok"}),
+        status=200,
+        mimetype='application/json'
+    )
+    return response
+
+
+@app.route('/bucket', methods=['POST', 'GET'])
 def bucket_views():
     """
 
     :return:
     """
-
     request_data = request.get_json()
     response_msg = {}
     status_code = 200
