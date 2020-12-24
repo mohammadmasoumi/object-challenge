@@ -14,18 +14,8 @@ BUCKET_VALIDATORS = {
 }
 
 
-@app.route('/')
-def hello_views():
-    response = app.response_class(
-        response=json.dumps({"result": "Ok"}),
-        status=200,
-        mimetype='application/json'
-    )
-    return response
-
-
 # @app.route('/', methods=['POST', 'GET'])
-@app.route('/bucket')
+@app.route('/bucket', methods=['POST'])
 def bucket_views():
     """
 
@@ -60,3 +50,12 @@ def bucket_views():
         mimetype='application/json'
     )
     return response
+
+# @app.route('/')
+# def hello_views():
+#     response = app.response_class(
+#         response=json.dumps({"result": "Ok"}),
+#         status=200,
+#         mimetype='application/json'
+#     )
+#     return response
