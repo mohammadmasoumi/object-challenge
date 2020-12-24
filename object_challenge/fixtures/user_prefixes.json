@@ -1,0 +1,6 @@
+{"user_pk": 1, "prefix_pk": 1,  "is_allowed":  true}
+{"user_pk": 1, "prefix_pk": 2,  "is_allowed":  false}
+{"user_pk": 2, "prefix_pk": 1,  "is_allowed":  true}
+{"user_pk": 2, "prefix_pk": 2,  "is_allowed":  true}
+{"user_pk": 3, "prefix_pk": 1,  "is_allowed":  false}
+{"user_pk": 3, "prefix_pk": 2,  "is_allowed":  false}

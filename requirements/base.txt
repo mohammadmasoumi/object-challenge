@@ -21,3 +21,5 @@ typing-extensions==3.7.4.3
 Werkzeug==1.0.1
 WTForms==2.3.3
 zipp==3.4.0
+redis
+ujson
