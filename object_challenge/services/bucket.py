@@ -1,22 +1,28 @@
-from app import db
+from app import app
+from object_challenge.mongo_models import UserPrefix
 
 __all__ = ('BucketService',)
 
 
 class BucketService:
 
-    def __init__(self, username, bucket):
-        self.username = username
+    def __init__(self, user_id, bucket):
+        self.user_id = user_id
         self.bucket = bucket
 
     def is_allowed(self):
-        db['user_prefixes'].aggregate([
+        user_prefixes = tuple(UserPrefix._get_collection().aggregate([
+            {'$match': {'user_pk': self.user_id}},
             {'$lookup': {
-                'from': None,
-                'localField': None,
-                'foreignField': None,
-                'as': None
-            }}
-        ])
+                'from': 'prefixes',
+                'localField': 'prefix_pk',
+                'foreignField': 'pk',
+                'as': 'user_prefixes',
+            }},
+            {'$project': {'$user_prefixes': 1, '$is_allowed': 1, '_id': 0}}
+        ]))
+
+        for item in user_prefixes:
+            app.logger.info(f"item: {item}")
 
         return True

@@ -9,12 +9,11 @@ from object_challenge.services import BucketService
 logger = getLogger(__name__)
 
 BUCKET_VALIDATORS = {
-    'username': [],
+    'user_id': [],
     'bucket': []
 }
 
 
-# @app.route('/', methods=['POST', 'GET'])
 @app.route('/bucket', methods=['POST'])
 def bucket_views():
     """
@@ -51,11 +50,16 @@ def bucket_views():
     )
     return response
 
-# @app.route('/')
-# def hello_views():
-#     response = app.response_class(
-#         response=json.dumps({"result": "Ok"}),
-#         status=200,
-#         mimetype='application/json'
-#     )
-#     return response
+
+@app.route('/arvan', methods=['POST'])
+def arvan_views():
+    """
+
+    :return:
+    """
+    response = app.response_class(
+        response=json.dumps({"result": "ok"}),
+        status=200,
+        mimetype='application/json'
+    )
+    return response
