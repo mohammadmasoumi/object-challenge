@@ -21,7 +21,7 @@ ngx.log(ngx.DEBUG, "request_header: " .. cjson.encode(request_header))
 ngx.log(ngx.DEBUG, "request_method: " .. request_method)
 ngx.log(ngx.DEBUG, "request_body: " .. cjson.encode(request_body))
 
-local res, err = https:request_uri(challenge_url, {
+local res, err = httpc:request_uri(challenge_url, {
     method = request_method,
     headers = request_header,
     body = request_body
