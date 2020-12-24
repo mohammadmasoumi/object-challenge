@@ -16,10 +16,10 @@ if request_header == nil then
     request_header = {}
 end
 
-ngx.say(challenge_url)
-ngx.say("request_header: " .. cjson.encode(request_header))
-ngx.say("request_method: " .. request_method)
-ngx.say("request_body: " .. cjson.encode(request_body))
+ngx.log(ngx.DEBUG, challenge_url)
+ngx.log(ngx.DEBUG, "request_header: " .. cjson.encode(request_header))
+ngx.log(ngx.DEBUG, "request_method: " .. request_method)
+ngx.log(ngx.DEBUG, "request_body: " .. cjson.encode(request_body))
 
 local res, err = https:request_uri(challenge_url, {
     method = request_method,
@@ -27,5 +27,5 @@ local res, err = https:request_uri(challenge_url, {
     body = request_body
 })
 
-ngx.say("response is:" .. cjson.encode(res))
-ngx.say("error is:" .. cjson.encode(err))
+ngx.log(ngx.DEBUG, "response is:" .. cjson.encode(res))
+ngx.log(ngx.DEBUG, "error is:" .. cjson.encode(err))
