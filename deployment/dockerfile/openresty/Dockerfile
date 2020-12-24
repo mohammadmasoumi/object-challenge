@@ -44,5 +44,6 @@ FROM openresty/openresty:1.19.3.1-2-focal
 # install dependencies
 RUN ["luarocks", "install", "lua-resty-http"]
 RUN ["luarocks", "install", "luajson"]
+RUN ["luarocks", "install", "lua-cjson"]
 
 EXPOSE 80 443

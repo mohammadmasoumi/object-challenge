@@ -1,4 +1,6 @@
 local http = require "resty.http"
+local cjson = require "cjson"
+
 local httpc = http.new()
 
 local challenge_url = "http://challenge:5000" .. ngx.var.uri
@@ -15,9 +17,9 @@ if request_header == nil then
 end
 
 ngx.say(challenge_url)
-ngx.log("request_header: " .. request_header)
+ngx.log("request_header: " .. cjson.encode(request_header))
 ngx.log("request_method: " .. request_method)
-ngx.log("request_body: " .. request_body)
+ngx.log("request_body: " .. cjson.encode(request_body))
 
 local res, err = https:request_uri(challenge_url, {
     method = request_method,
@@ -25,6 +27,5 @@ local res, err = https:request_uri(challenge_url, {
     body = request_body
 })
 
-ngx.log("response is:" .. res)
-ngx.log("response is:" .. err)
-ngx.say("response is:" .. res)
+ngx.log("response is:" .. cjson.encode(res))
+ngx.log("error is:" .. cjson.encode(err))
