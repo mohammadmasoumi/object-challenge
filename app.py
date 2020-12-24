@@ -15,6 +15,17 @@ app = Flask(__name__)
 app.config.update({'ENV': APP_ENV})
 app.config.from_object(f'{PROJECT_NAME}.settings.{APP_ENV}')
 
+
+@app.route('/')
+def hello_views():
+    response = app.response_class(
+        response=json.dumps({"result": "Ok"}),
+        status=200,
+        mimetype='application/json'
+    )
+    return response
+
+
 # import views
 from object_challenge.views import *  # NOQA
 

@@ -24,7 +24,9 @@ ngx.log(ngx.DEBUG, "request_body: " .. cjson.encode(request_body))
 
 local res, err = httpc:request_uri(challenge_url, {
     method = request_method,
-    headers = request_header,
+    headers = {
+        ["Content-Type"] = "application/json"
+    },
     body = request_body
 })
 
