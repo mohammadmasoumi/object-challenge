@@ -1,4 +1,3 @@
-
 local http = require "resty.http"
 local cjson = require "cjson"
 
@@ -24,11 +23,15 @@ ngx.log(ngx.DEBUG, "request_body: " .. cjson.encode(request_body))
 
 local res, err = httpc:request_uri(challenge_url, {
     method = request_method,
-    headers = {
-        ["Content-Type"] = "application/json"
-    },
+    headers = request_header,
     body = request_body
 })
 
-ngx.log(ngx.DEBUG, "response is:" .. cjson.encode(res))
+local response_body = res.body
+local response_headers = res.headers
+local response_status = res.status
+
+ngx.log(ngx.DEBUG, "response_body" .. cjson.encode(response_body))
+ngx.log(ngx.DEBUG, "response_headers" .. cjson.encode(response_headers))
+ngx.log(ngx.DEBUG, "response_status" .. cjson.encode(response_status))
 ngx.log(ngx.DEBUG, "error is:" .. cjson.encode(err))
