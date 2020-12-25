@@ -2,7 +2,6 @@ import os
 import unittest
 
 import coverage
-import ujson
 from flask_script import Manager
 
 COV = coverage.coverage(
@@ -18,6 +17,7 @@ COV.start()
 
 # register app
 from object_challenge import app, mongo_db  # NOQA
+from object_challenge.helper import load_fixture  # NOQA
 
 mongo_db.init_app(app)
 
@@ -26,14 +26,7 @@ manager = Manager(app)
 
 @manager.command
 def init():
-    from object_challenge.bucket.mongo_models import User
-    path = os.path.join(app.config['PROJECT_DIR'], 'bucket', 'fixtures')
-    filenames = [file for file in os.listdir(path) if os.path.isfile(os.path.join(path, file))]
-    for filename in filenames:
-        col_name = filename[:-5]
-        with open(os.path.join(path, filename)) as file:
-            for row in file.readlines():
-                User._get_db()[col_name].insert_one(ujson.loads(row))
+    load_fixture(app)
 
 
 @manager.command

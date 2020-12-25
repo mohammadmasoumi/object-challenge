@@ -1,9 +1,8 @@
 import multiprocessing
+import os
 
-from object_challenge.base import utilities
-
-HOST = utilities.get_env_var("HOST", "0.0.0.0", True)
-PORT = utilities.get_env_var("PORT", "5000", True)
+HOST = os.environ.get("APP_HOST", "0.0.0.0")
+PORT = os.environ.get("APP_PORT", "5000")
 
 # Gunicorn config
 bind = ''.join([HOST, ':', PORT])

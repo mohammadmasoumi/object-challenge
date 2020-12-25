@@ -11,10 +11,9 @@ class User(mo.Document):
 
     meta = {
         'index_background': True,
+        'collection': 'users',
         'indexes': [
             'user_id',
             'auth_token'
-        ],
-        'collection': 'users',
-        'db_alias': 'challenge'
+        ]
     }

@@ -11,4 +11,14 @@ mongo <<EOF
         ]
       }
    );
+   use test
+   db.createUser(
+      {
+        user: "test",
+        pwd: "test",
+        roles: [
+           { role: "dbOwner", db: "test" }
+        ]
+      }
+   );
 EOF

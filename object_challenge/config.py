@@ -23,6 +23,7 @@ REDIS_PORT = get_env_var('REDIS_CACHE_PORT', 6379, prefixed=True)
 class BaseConfig:
     """Base configuration."""
     DEBUG = False
+    BEARER = 'TOKEN'
     PROJECT_DIR = os.path.abspath(os.path.dirname(__file__))
     SECRET_KEY = os.getenv('SECRET_KEY', 'my_precious')
 
@@ -51,13 +52,13 @@ class TestingConfig(BaseConfig):
     DEBUG = True
     TESTING = True
     MONGODB_SETTINGS = {
-        'db': get_env_var('MONGO_DB', default='challenge', prefixed=True),
+        'db': get_env_var('MONGO_DB', default='test', prefixed=True),
         'host': get_env_var('MONGO_HOST', default='mongo', prefixed=True),
         'port': int(get_env_var('MONGO_PORT', default=27017, prefixed=True)),
-        'username': get_env_var('MONGO_USERNAME', default='challenge', prefixed=True),
-        'password': get_env_var('MONGO_PASSWORD', default='challenge', prefixed=True),
+        'username': get_env_var('MONGO_USERNAME', default='test', prefixed=True),
+        'password': get_env_var('MONGO_PASSWORD', default='test', prefixed=True),
         'connect': False,
-        'alias': 'challenge'
+        'alias': 'default'
     }
     REDIS_SETTINGS = {
         'db': get_env_var('REDIS_CACHE_DB', 10, prefixed=True),

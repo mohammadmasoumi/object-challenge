@@ -10,9 +10,8 @@ class Prefix(mo.Document):
 
     meta = {
         'index_background': True,
+        'collection': 'prefixes',
         'indexes': [
             'prefix_id'
-        ],
-        'collection': 'prefixes',
-        'db_alias': 'challenge'
+        ]
     }

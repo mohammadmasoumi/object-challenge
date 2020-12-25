@@ -4,7 +4,6 @@ from object_challenge.bucket.mongo_models import User as UserDocument
 
 
 class AuthMixin:
-    _BEARER = 'Token'
     DEFAULT_AUTH_ERRORS = {
         'bearer': "Invalid authorization `bearer`",
         'token': "Invalid user `token`"
@@ -33,7 +32,7 @@ class AuthMixin:
         if auth_header:
             bearer, token = auth_header.split(' ')
             app.logger.info(f"token: {token} | bearer: {bearer}")
-            if bearer == self._BEARER:
+            if bearer == app.config['BEARER']:
                 if token:
                     user = self._fetch_user(token)
                     if not user:

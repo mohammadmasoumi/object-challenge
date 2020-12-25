@@ -1,3 +1,3 @@
-{"user_id": 1, "name":  "a", "auth_token":  "this_is_my_token_1"}
-{"user_id": 2, "name":  "b", "auth_token":  "this_is_my_token_2"}
-{"user_id": 3, "name":  "c", "auth_token":  "this_is_my_token_3"}
+{"user_id": 1, "name":  "a", "auth_token":  "token_1"}
+{"user_id": 2, "name":  "b", "auth_token":  "token_2"}
+{"user_id": 3, "name":  "c", "auth_token":  "token_3"}
