@@ -1,65 +1,64 @@
-import json
 from logging import getLogger
 
-from flask import request
+from flask import request, make_response, jsonify
+from flask.views import MethodView
 
-from app import app
 from object_challenge.services import BucketService
+from .mixins import AuthMixin
 
 logger = getLogger(__name__)
 
+__all__ = ('ArvanAPI', 'BucketAPI')
+
 BUCKET_VALIDATORS = {
-    'user_id': [],
     'bucket': []
 }
 
 
-@app.route('/bucket', methods=['POST'])
-def bucket_views():
-    """
+class BucketAPI(MethodView, AuthMixin):
 
-    :return:
-    """
-    request_data = request.get_json()
-    response_msg = {}
-    status_code = 200
+    def post(self):
+        response_msg = {}
+        status_code = 200
 
-    # validate
-    validated_data = {}
-    for key, validators in BUCKET_VALIDATORS.items():
-        try:
-            value = request_data[key]
-            # TODO validate data
-            validated_data[key] = value
-        except:  # NOQA
-            status_code = 400
-            response_msg.update({key: f"`{key}` is required!"})
+        # get the post data
+        post_data = request.get_json()
+        user, error = self.is_authenticated(request)
 
-    if not response_msg:
-        is_allowed = BucketService(**validated_data).is_allowed()
-        if is_allowed:
-            response_msg.update({"result": "ok"})
+        if user and not error:
+            # validate required key
+            validated_data = {}
+            for key, validators in BUCKET_VALIDATORS.items():
+                try:
+                    value = post_data[key]
+                    # TODO validate data
+                    validated_data[key] = value
+                except:  # NOQA
+                    status_code = 400
+                    response_msg.update({key: f"`{key}` is required!"})
+
+            # if data is valid
+            if not response_msg:
+                is_allowed = BucketService(user=user).is_allowed(**validated_data)
+                if is_allowed:
+                    response_msg.update({"result": "ok"})
+                else:
+                    status_code = 400
+                    response_msg.update({"result": "not allowed"})
         else:
-            status_code = 400
-            response_msg.update({"result": "not allowed"})
+            response_msg.update({"result": error})
 
-    response = app.response_class(
-        response=json.dumps(response_msg),
-        status=status_code,
-        mimetype='application/json'
-    )
-    return response
+        return make_response(jsonify(response_msg)), status_code
 
 
-@app.route('/arvan', methods=['POST'])
-def arvan_views():
-    """
+class ArvanAPI(MethodView):
 
-    :return:
-    """
-    response = app.response_class(
-        response=json.dumps({"result": "ok"}),
-        status=200,
-        mimetype='application/json'
-    )
-    return response
+    def post(self):
+        """
+
+        :return:
+        """
+        status_code = 200
+        response_msg = {"result": "ok"}
+
+        return make_response(jsonify(response_msg)), status_code
