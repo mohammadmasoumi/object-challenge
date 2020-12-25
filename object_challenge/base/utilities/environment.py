@@ -2,7 +2,7 @@ import os
 
 __all__ = ('get_env_var', 'get_env_list')
 
-_PREFIX = 'APP_'
+_PREFIX = 'APP'
 
 
 def get_env_var(name, default=None, prefixed=False):
@@ -13,7 +13,7 @@ def get_env_var(name, default=None, prefixed=False):
     :param default: default value if the environment variable was not set
     :return: value of the given environment variable
     """
-    key = f'{_PREFIX if prefixed else ""}{name}'
+    key = f"{_PREFIX}_{name}" if prefixed else name
     return os.environ.get(key, default)
 
 

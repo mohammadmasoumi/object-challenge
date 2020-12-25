@@ -2,6 +2,8 @@ import os
 import ujson
 from app import db, PROJECT_ROOT
 
+__all__ = ('DataLoaderMixin',)
+
 
 class DataLoaderMixin:
 
