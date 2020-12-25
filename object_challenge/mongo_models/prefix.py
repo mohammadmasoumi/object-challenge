@@ -2,8 +2,8 @@ import mongoengine as mo
 
 
 class Prefix(mo.Document):
-    prefix_id = mo.IntField(null=False)
-    prefix = mo.StringField(null=False)
+    prefix_id = mo.IntField(null=False, unique=True)
+    prefix = mo.StringField(null=False, unique=True)
 
     meta = {
         'index_background': True,

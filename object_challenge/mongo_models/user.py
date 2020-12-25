@@ -2,7 +2,7 @@ import mongoengine as mo
 
 
 class User(mo.Document):
-    user_id = mo.IntField(null=False)
+    user_id = mo.IntField(null=False, unique=True)
     name = mo.StringField(null=False)
     auth_token = mo.StringField(null=False, unique=True)
 
