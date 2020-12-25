@@ -3,29 +3,30 @@
 
 name: ci
 
-services:
-  mongo:
-    image: mongo
-    container_name: mongodb
-    restart: unless-stopped
-    env_file:
-      - ../../deployment/env_dir/mongo.env
-    networks:
-      - backend
-    dns:
-      - 8.8.8.8
-      - 4.2.2.4
-    ports:
-      - 27017:27017
-    volumes:
-      - ../../deployment/data/mongo/mongo-init.sh:/docker-entrypoint-initdb.d/mongo-init.sh:ro
-      - mongo-data:/data/db
+
 on:
   push:
     branches: [ master ]
 
 jobs:
   build:
+    services:
+      mongo:
+        image: mongo
+        container_name: mongodb
+        restart: unless-stopped
+        env_file:
+          - ../../deployment/env_dir/mongo.env
+        networks:
+          - backend
+        dns:
+          - 8.8.8.8
+          - 4.2.2.4
+        ports:
+          - 27017:27017
+        volumes:
+          - ../../deployment/data/mongo/mongo-init.sh:/docker-entrypoint-initdb.d/mongo-init.sh:ro
+          - mongo-data:/data/db
 
     runs-on: ubuntu-latest
 
