@@ -25,8 +25,6 @@ db.init_app(app)
 # # redis configuration
 redis = Redis(**app.config['REDIS_SETTINGS'])
 
-from object_challenge.commands import *  # NOQA
-
 if __name__ == '__main__':
     app.run(debug=True)
 else:
