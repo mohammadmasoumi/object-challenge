@@ -7,8 +7,8 @@ services:
       dockerfile: Dockerfile
     image: challenge
     container_name: challenge
-    volumes:
-      - ./data/challenge/entrypoint.sh:/run/entrypoint.sh:ro
+    command:
+      - flask manage initial
     networks:
       - backend
       - frontend
