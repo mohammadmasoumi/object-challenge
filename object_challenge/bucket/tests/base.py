@@ -9,7 +9,7 @@ class BaseTestCase(TestCase):
 
     def create_app(self):
         app.config.from_object('object_challenge.config.TestingConfig')
-
+        app.logger.info(app.config)
         return app
 
     def setUp(self):
