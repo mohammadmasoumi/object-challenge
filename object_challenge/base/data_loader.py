@@ -18,6 +18,3 @@ class DataLoaderMixin:
         with open(path) as file:
             for row in file.readlines():
                 UserDocument._get_db()[col_name].insert_one(ujson.loads(row))
-
-# for filename in ('prefixes.json', 'users.json', 'user_prefixes.json'):
-#     DataLoaderMixin.load_data(filename)

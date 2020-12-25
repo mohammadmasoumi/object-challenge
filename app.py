@@ -1,9 +1,9 @@
 import logging
 import os
-from redis import Redis
 
 from flask import Flask
 from flask_mongoengine import MongoEngine
+from redis import Redis
 
 # before app initialization
 PROJECT_NAME = 'object_challenge'
@@ -22,11 +22,10 @@ app.config.from_object(f'{PROJECT_NAME}.settings.{APP_ENV}')
 db = MongoEngine()
 db.init_app(app)
 
-# redis configuration
+# # redis configuration
 redis = Redis(**app.config['REDIS_SETTINGS'])
 
-# import views
-from object_challenge.views import *  # NOQA
+from object_challenge.commands import *  # NOQA
 
 if __name__ == '__main__':
     app.run(debug=True)

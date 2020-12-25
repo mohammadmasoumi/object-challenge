@@ -11,7 +11,8 @@ MONGODB_SETTINGS = {
     'port': int(utilities.get_env_var('MONGO_PORT', default=27017, prefixed=True)),
     'username': utilities.get_env_var('MONGO_USERNAME', default='challenge', prefixed=True),
     'password': utilities.get_env_var('MONGO_PASSWORD', default='challenge', prefixed=True),
-    'connect': False
+    'connect': False,
+    'alias':'challenge'
 }
 
 REDIS_SETTINGS = {
