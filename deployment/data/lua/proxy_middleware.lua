@@ -38,7 +38,7 @@ ngx.log(ngx.DEBUG, "error is:" .. cjson.encode(err))
 
 if res.status == 200 then
     ngx.location.capture("/redirect_to", {
-        method = request_method,
+        method = ngx.HTTP_POST,
         always_forward_body = true
     })
 else
