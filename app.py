@@ -1,5 +1,6 @@
 import logging
 import os
+from redis import Redis
 
 from flask import Flask
 from flask_mongoengine import MongoEngine
@@ -13,11 +14,16 @@ PROJECT_PATH = os.path.join(PROJECT_ROOT, PROJECT_NAME)
 # app
 app = Flask(__name__)
 app.config.update({'ENV': APP_ENV})
+app.config.update({'PROJECT_ROOT': PROJECT_ROOT})
+app.config.update({'PROJECT_PATH': PROJECT_PATH})
 app.config.from_object(f'{PROJECT_NAME}.settings.{APP_ENV}')
 
 # mongo db configuration
 db = MongoEngine()
 db.init_app(app)
+
+# redis configuration
+redis = Redis(**app.config['REDIS_SETTINGS'])
 
 # import views
 from object_challenge.views import *  # NOQA

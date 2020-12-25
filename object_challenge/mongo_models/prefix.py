@@ -10,5 +10,6 @@ class Prefix(mo.Document):
         'indexes': [
             'prefix_id'
         ],
-        'collection': 'prefixes'
+        'collection': 'prefixes',
+        'db_alias': 'challenge'
     }

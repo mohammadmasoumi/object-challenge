@@ -16,4 +16,5 @@ class UserPrefix(mo.Document):
                 ]
             },
         ],
+        'db_alias': 'challenge'
     }

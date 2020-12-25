@@ -12,5 +12,6 @@ class User(mo.Document):
             'user_id',
             'auth_token'
         ],
-        'collection': 'users'
+        'collection': 'users',
+        'db_alias': 'challenge'
     }

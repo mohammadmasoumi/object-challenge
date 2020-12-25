@@ -1,5 +1,7 @@
 from collections import namedtuple
 
+__all__ = ('UserObj',)
 
-class User(namedtuple('User', ('user_id', 'name', 'token'))):
+
+class UserObj(namedtuple('UserObj', ('user_id', 'name', 'token'))):
     pass

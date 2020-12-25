@@ -1,4 +1,4 @@
-from object_challenge.base import User
+from object_challenge.base import UserObj
 from object_challenge.mongo_models import User as UserDocument
 
 
@@ -17,7 +17,7 @@ class AuthMixin:
         """
         user_data = UserDocument._get_collection().find_one({'token': token})
         if user_data:
-            return User(**user_data)
+            return UserObj(**user_data)
 
     def is_authenticated(self, request):
         """
