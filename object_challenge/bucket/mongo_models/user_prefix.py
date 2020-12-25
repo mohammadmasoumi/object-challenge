@@ -18,5 +18,6 @@ class UserPrefix(mo.Document):
                     'user_id', 'prefix_id', 'is_allowed'
                 ]
             },
-        ]
+        ],
+        'db_alias': 'challenge'
     }

@@ -23,7 +23,7 @@ REDIS_PORT = get_env_var('REDIS_CACHE_PORT', 6379, prefixed=True)
 class BaseConfig:
     """Base configuration."""
     DEBUG = False
-    BEARER = 'TOKEN'
+    BEARER = 'Token'
     PROJECT_DIR = os.path.abspath(os.path.dirname(__file__))
     SECRET_KEY = os.getenv('SECRET_KEY', 'my_precious')
 
@@ -31,12 +31,20 @@ class BaseConfig:
 class DevelopmentConfig(BaseConfig):
     """Development configuration."""
     DEBUG = True
+
+    MONGO_DB = get_env_var('MONGO_DB', default='challenge', prefixed=True)
+    MONGO_HOST = get_env_var('MONGO_HOST', default='mongo', prefixed=True)
+    MONGO_PORT = int(get_env_var('MONGO_PORT', default=27017, prefixed=True))
+    MONGO_USERNAME = get_env_var('MONGO_USERNAME', default='challenge', prefixed=True)
+    MONGO_PASSWORD = get_env_var('MONGO_PASSWORD', default='challenge', prefixed=True)
+
+    MONGO_URI = f"mongodb://{MONGO_USERNAME}:{MONGO_PASSWORD}@{MONGO_HOST}:{MONGO_PORT}/{MONGO_DB}"
     MONGODB_SETTINGS = {
-        'db': get_env_var('MONGO_DB', default='challenge', prefixed=True),
-        'host': get_env_var('MONGO_HOST', default='mongo', prefixed=True),
-        'port': int(get_env_var('MONGO_PORT', default=27017, prefixed=True)),
-        'username': get_env_var('MONGO_USERNAME', default='challenge', prefixed=True),
-        'password': get_env_var('MONGO_PASSWORD', default='challenge', prefixed=True),
+        'db': MONGO_DB,
+        'host': MONGO_HOST,
+        'port': MONGO_PORT,
+        'username': MONGO_USERNAME,
+        'password': MONGO_PASSWORD,
         'connect': False,
         'alias': 'challenge'
     }
@@ -51,14 +59,22 @@ class TestingConfig(BaseConfig):
     """Testing configuration."""
     DEBUG = True
     TESTING = True
+
+    MONGO_DB = get_env_var('MONGO_DB', default='test', prefixed=True)
+    MONGO_HOST = get_env_var('MONGO_HOST', default='mongo', prefixed=True)
+    MONGO_PORT = int(get_env_var('MONGO_PORT', default=27017, prefixed=True))
+    MONGO_USERNAME = get_env_var('MONGO_USERNAME', default='test', prefixed=True)
+    MONGO_PASSWORD = get_env_var('MONGO_PASSWORD', default='test', prefixed=True)
+
+    MONGO_URI = f"mongodb://{MONGO_USERNAME}:{MONGO_PASSWORD}@{MONGO_HOST}:{MONGO_PORT}/{MONGO_DB}"
     MONGODB_SETTINGS = {
-        'db': get_env_var('MONGO_DB', default='test', prefixed=True),
-        'host': get_env_var('MONGO_HOST', default='mongo', prefixed=True),
-        'port': int(get_env_var('MONGO_PORT', default=27017, prefixed=True)),
-        'username': get_env_var('MONGO_USERNAME', default='test', prefixed=True),
-        'password': get_env_var('MONGO_PASSWORD', default='test', prefixed=True),
+        'db': MONGO_DB,
+        'host': MONGO_HOST,
+        'port': MONGO_PORT,
+        'username': MONGO_USERNAME,
+        'password': MONGO_PASSWORD,
         'connect': False,
-        'alias': 'default'
+        'alias': 'test'
     }
     REDIS_SETTINGS = {
         'db': get_env_var('REDIS_CACHE_DB', 10, prefixed=True),
@@ -71,12 +87,20 @@ class ProductionConfig(BaseConfig):
     """Production configuration."""
     SECRET_KEY = get_env_var("SECRET_KEY", default=os.urandom(64))
     DEBUG = False
+
+    MONGO_DB = get_env_var('MONGO_DB', default='challenge', prefixed=True)
+    MONGO_HOST = get_env_var('MONGO_HOST', default='mongo', prefixed=True)
+    MONGO_PORT = int(get_env_var('MONGO_PORT', default=27017, prefixed=True))
+    MONGO_USERNAME = get_env_var('MONGO_USERNAME', default='challenge', prefixed=True)
+    MONGO_PASSWORD = get_env_var('MONGO_PASSWORD', default='challenge', prefixed=True)
+
+    MONGO_URI = f"mongodb://{MONGO_USERNAME}:{MONGO_PASSWORD}@{MONGO_HOST}:{MONGO_PORT}/{MONGO_DB}"
     MONGODB_SETTINGS = {
-        'db': get_env_var('MONGO_DB', default='challenge', prefixed=True),
-        'host': get_env_var('MONGO_HOST', default='mongo', prefixed=True),
-        'port': int(get_env_var('MONGO_PORT', default=27017, prefixed=True)),
-        'username': get_env_var('MONGO_USERNAME', default='challenge', prefixed=True),
-        'password': get_env_var('MONGO_PASSWORD', default='challenge', prefixed=True),
+        'db': MONGO_DB,
+        'host': MONGO_HOST,
+        'port': MONGO_PORT,
+        'username': MONGO_USERNAME,
+        'password': MONGO_PASSWORD,
         'connect': False,
         'alias': 'challenge'
     }

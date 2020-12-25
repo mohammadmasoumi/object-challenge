@@ -1,6 +1,6 @@
 import re
 
-from object_challenge.bucket.mongo_models import Prefix
+from object_challenge import pymongo
 
 __all__ = ('BucketService',)
 
@@ -38,7 +38,7 @@ class BucketService:
         #   1. prefix doesn't exists in the db
         #   2. the prefix was assigned to the user
         #   3. the prefix wasn't forbidden for this user
-        user_prefixes = tuple(Prefix._get_collection().aggregate([
+        user_prefixes = tuple(pymongo.db.prefixes.aggregate([
             {'$match': {'prefix': {'$regex': r_bucket}}},
             {'$lookup': {
                 'from': 'user_prefixes',

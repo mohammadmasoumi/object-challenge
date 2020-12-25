@@ -15,5 +15,6 @@ class User(mo.Document):
         'indexes': [
             'user_id',
             'auth_token'
-        ]
+        ],
+        'db_alias': 'challenge'
     }
