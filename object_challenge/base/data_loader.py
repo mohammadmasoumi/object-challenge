@@ -2,8 +2,8 @@ import os
 
 import ujson
 
-from app import app
-from object_challenge.mongo_models import User as UserDocument
+from object_challenge import app
+from object_challenge.bucket.mongo_models import User as UserDocument
 
 __all__ = ('DataLoaderMixin',)
 

@@ -1,9 +1,9 @@
 from object_challenge.base import UserObj
-from object_challenge.mongo_models import User as UserDocument
+from object_challenge.bucket.mongo_models import User as UserDocument
 
 
 class AuthMixin:
-    _BEARER = 'Bearer'
+    _BEARER = 'Token'
     DEFAULT_AUTH_ERRORS = {
         'bearer': "Invalid authorization `bearer`",
         'token': "Invalid user `token`"

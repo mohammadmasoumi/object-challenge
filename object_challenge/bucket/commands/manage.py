@@ -4,7 +4,7 @@ import click
 import ujson
 from flask.cli import AppGroup
 
-from object_challenge.mongo_models import User
+from object_challenge.bucket.mongo_models import User
 
 __all__ = ('management_cli',)
 

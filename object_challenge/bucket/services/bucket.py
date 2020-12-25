@@ -1,6 +1,6 @@
 import re
 
-from object_challenge.mongo_models import Prefix
+from object_challenge.bucket.mongo_models import Prefix
 
 __all__ = ('BucketService',)
 

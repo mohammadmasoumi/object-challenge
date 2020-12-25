@@ -1,14 +1,15 @@
 from logging import getLogger
 
+from flask import Blueprint
 from flask import request, make_response, jsonify
 from flask.views import MethodView
 
-from object_challenge.services import BucketService
-from .mixins import AuthMixin
+from object_challenge.bucket.services import BucketService
+from object_challenge.base.mixins import AuthMixin
 
 logger = getLogger(__name__)
 
-__all__ = ('ArvanAPI', 'BucketAPI')
+__all__ = ('bucket_blueprint',)
 
 BUCKET_VALIDATORS = {
     'bucket': []
@@ -62,3 +63,20 @@ class ArvanAPI(MethodView):
         response_msg = {"result": "ok"}
 
         return make_response(jsonify(response_msg)), status_code
+
+
+# define blueprint
+bucket_blueprint = Blueprint('bucket', __name__)
+
+# add Rules for API Endpoints and the API resources
+bucket_blueprint.add_url_rule(
+    '/bucket',
+    view_func=BucketAPI.as_view('bucket_api'),
+    methods=['POST']
+)
+
+bucket_blueprint.add_url_rule(
+    '/arvan',
+    view_func=ArvanAPI.as_view('arvan_api'),
+    methods=['POST']
+)

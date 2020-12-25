@@ -22,4 +22,4 @@ RUN useradd -u $USER_ID -g $USER_NAME -ms /bin/bash $USER_NAME
 USER $USER_NAME
 
 EXPOSE 5000
-CMD [ "gunicorn", "app:app", "--config=config.py", "--log-level=debug"]
+CMD [ "gunicorn", "manage:app", "--config=config.py", "--log-level=debug"]
