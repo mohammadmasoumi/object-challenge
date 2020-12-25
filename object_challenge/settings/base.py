@@ -12,7 +12,7 @@ MONGODB_SETTINGS = {
     'username': utilities.get_env_var('MONGO_USERNAME', default='challenge', prefixed=True),
     'password': utilities.get_env_var('MONGO_PASSWORD', default='challenge', prefixed=True),
     'connect': False,
-    'alias':'challenge'
+    'alias': 'challenge'
 }
 
 REDIS_SETTINGS = {
