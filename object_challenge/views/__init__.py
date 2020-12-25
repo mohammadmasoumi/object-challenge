@@ -1,7 +1,7 @@
 from flask import Blueprint
 
 from app import app
-from .bucket import *  # NOQA
+from .bucket import BucketAPI, ArvanAPI
 
 # define the API resources
 bucket_view = BucketAPI.as_view('bucket_api')
