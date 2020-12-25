@@ -5,6 +5,8 @@ from flask import Flask
 from flask_mongoengine import MongoEngine
 from redis import Redis
 
+from object_challenge.commands import management_cli  # NOQA
+
 # before app initialization
 PROJECT_NAME = 'object_challenge'
 APP_ENV = os.environ.get('ENV', 'development')
@@ -24,6 +26,9 @@ db.init_app(app)
 
 # # redis configuration
 redis = Redis(**app.config['REDIS_SETTINGS'])
+
+# commands
+app.cli.add_command(management_cli)
 
 if __name__ == '__main__':
     app.run(debug=True)

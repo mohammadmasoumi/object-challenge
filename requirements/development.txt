@@ -1,1 +1,3 @@
 -r base.txt
+
+flask-shell-ipython

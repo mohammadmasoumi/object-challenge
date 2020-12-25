@@ -26,10 +26,18 @@ This project is a technical challenge project which is powered by flask, docker 
    cd /deployment
    ```
  - ```
-   docker-compose up -d mongo openresty challenge
+   docker-compose up -d 
    ```
    
    
+# flask shell
+
+This project use `flask-shell-ipython` as an interactive flask shell.
+```shell script
+pip install flask-shell-ipython
+flask shell
+```
+
 # Resources
 
   - [How we reduced the CPU usage of our Lua code][1]
