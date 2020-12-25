@@ -38,6 +38,14 @@ pip install flask-shell-ipython
 flask shell
 ```
 
+# Commands
+
+ - management commands
+    - for initializing fixtures you can use. `object_challenge/object_challenge/fixtures`
+    ```shell script
+    flask manage initial
+    ``` 
+
 # Resources
 
   - [How we reduced the CPU usage of our Lua code][1]
