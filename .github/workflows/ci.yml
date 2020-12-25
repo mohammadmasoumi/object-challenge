@@ -13,8 +13,12 @@ jobs:
     services:
       mongo:
         image: mongo
-        env_file:
-          - ../../deployment/env_dir/mongo.env
+        env:
+          - MONGO_INITDB_ROOT_USERNAME: root
+          - MONGO_INITDB_DATABAS: challenge
+          - MONGODB_DATA_DIR: /data/db
+          - MONGO_INITDB_ROOT_PASSWOR: 1234
+          - MONDODB_LOG_DIR: /dev/null
         ports:
           - 27017:27017
         volumes:
