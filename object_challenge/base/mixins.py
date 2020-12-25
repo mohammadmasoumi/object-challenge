@@ -1,3 +1,4 @@
+from object_challenge import app
 from object_challenge.base import UserObj
 from object_challenge.bucket.mongo_models import User as UserDocument
 
@@ -15,7 +16,7 @@ class AuthMixin:
         :param token:
         :return:
         """
-        user_data = UserDocument._get_collection().find_one({'token': token})
+        user_data = UserDocument._get_collection().find_one({'auth_token': token}, {'_id': 0})
         if user_data:
             return UserObj(**user_data)
 
@@ -31,6 +32,7 @@ class AuthMixin:
         auth_header = request.headers.get('Authorization')
         if auth_header:
             bearer, token = auth_header.split(' ')
+            app.logger.info(f"token: {token} | bearer: {bearer}")
             if bearer == self._BEARER:
                 if token:
                     user = self._fetch_user(token)

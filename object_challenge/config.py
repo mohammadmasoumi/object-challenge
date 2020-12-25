@@ -16,7 +16,6 @@ def get_env_var(name, default=None, prefixed=False):
 
 
 PROJECT_NAME = 'object_challenge'
-PROJECT_ROOT = os.path.abspath(os.path.dirname(__file__))
 REDIS_HOST = get_env_var('REDIS_CACHE_HOST', 'redis', prefixed=True)
 REDIS_PORT = get_env_var('REDIS_CACHE_PORT', 6379, prefixed=True)
 
@@ -24,8 +23,8 @@ REDIS_PORT = get_env_var('REDIS_CACHE_PORT', 6379, prefixed=True)
 class BaseConfig:
     """Base configuration."""
     DEBUG = False
+    PROJECT_DIR = os.path.abspath(os.path.dirname(__file__))
     SECRET_KEY = os.getenv('SECRET_KEY', 'my_precious')
-    SQLALCHEMY_TRACK_MODIFICATIONS = False
 
 
 class DevelopmentConfig(BaseConfig):

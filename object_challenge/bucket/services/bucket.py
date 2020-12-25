@@ -15,7 +15,7 @@ class BucketService:
         assert user, "`user` is required"
         self.user = user
 
-    def is_allowed(self, data):
+    def is_allowed(self, **data):
         """
         indicates whether user can create specified bucket or not
         :param data: bucket data
