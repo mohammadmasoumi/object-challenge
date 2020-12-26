@@ -23,9 +23,6 @@ class BucketService:
         """
         assert data.get('bucket'), "`bucket` is required"
 
-        # indicates whether user is allowed or not
-        is_allowed = True
-
         # buckets at least should have 3 characters
         # we get 2 first characters for database lookup
         bucket = data['bucket'][:2].lower()
@@ -48,15 +45,25 @@ class BucketService:
             }},
             {'$unwind': '$user_prefixes'},
             {'$match': {'$or': [
-                {'user_id': {'$ne': self.user.user_id}},
+                {'user_id': {'$ne': self.user.user_id}, 'is_allowed': True},
                 {'user_id': self.user.user_id, 'is_allowed': False}
             ]}}
         ]))
 
         if user_prefixes:
+            is_user_disallowed = False
+            is_assigned_to_user = False
+            is_assigned_to_another_user = False
             for item in user_prefixes:
                 if bucket.startswith(item['prefix']):
-                    is_allowed = False
-                    break
+                    if item['user_id'] == self.user.user_id:
+                        if not item['is_allowed']:
+                            is_user_disallowed = True
+                        else:
+                            is_assigned_to_user = True
+                    else:
+                        is_assigned_to_another_user = True
 
-        return is_allowed
+            return not is_user_disallowed and (not is_assigned_to_another_user or is_assigned_to_user)
+
+        return True
