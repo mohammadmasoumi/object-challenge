@@ -65,7 +65,10 @@ class ArvanAPI(MethodView):
         status_code = 200
         response_msg = {"result": "ok"}
 
-        app.logger.info(f"[ArvanAPI]: response_msg: {response_msg} | status_code: {status_code}")
+        post_data = request.get_json()
+        app.logger.info(
+            f"[ArvanAPI]: response_msg: {response_msg} | status_code: {status_code} | post_data: {post_data}"
+        )
         return make_response(jsonify(response_msg)), status_code
 
 

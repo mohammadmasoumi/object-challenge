@@ -45,20 +45,20 @@ class BucketService:
             }},
             {'$unwind': '$user_prefixes'},
             {'$match': {'$or': [
-                {'user_id': {'$ne': self.user.user_id}, 'is_allowed': True},
-                {'user_id': self.user.user_id, 'is_allowed': False}
+                {'user_prefixes.user_id': {'$ne': self.user.user_id}, 'user_prefixes.is_allowed': True},
+                {'user_prefixes.user_id': self.user.user_id, 'user_prefixes.is_allowed': False}
             ]}}
         ]))
-        app.logger.info(f"user_prefixes: {user_prefixes}")
-
+        app.logger.info(f"user_prefixes: {user_prefixes}") # TODO remove this log
         if user_prefixes:
             is_user_disallowed = False
             is_assigned_to_user = False
             is_assigned_to_another_user = False
+
             for item in user_prefixes:
                 if bucket.startswith(item['prefix']):
-                    if item['user_id'] == self.user.user_id:
-                        if not item['is_allowed']:
+                    if item['user_prefixes']['user_id'] == self.user.user_id:
+                        if not item['user_prefixes']['is_allowed']:
                             is_user_disallowed = True
                         else:
                             is_assigned_to_user = True
