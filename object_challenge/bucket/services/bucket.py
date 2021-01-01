@@ -23,6 +23,11 @@ class BucketService:
         """
         assert data.get('bucket'), "`bucket` is required"
 
+        # initial values
+        is_user_disallowed = False
+        is_assigned_to_user = False
+        is_assigned_to_another_user = False
+
         # buckets at least should have 3 characters
         # we get 2 first characters for database lookup
         bucket = data['bucket'][:2].lower()
@@ -49,22 +54,16 @@ class BucketService:
                 {'user_prefixes.user_id': self.user.user_id, 'user_prefixes.is_allowed': False}
             ]}}
         ]))
-        app.logger.info(f"user_prefixes: {user_prefixes}") # TODO remove this log
-        if user_prefixes:
-            is_user_disallowed = False
-            is_assigned_to_user = False
-            is_assigned_to_another_user = False
 
-            for item in user_prefixes:
-                if bucket.startswith(item['prefix']):
-                    if item['user_prefixes']['user_id'] == self.user.user_id:
-                        if not item['user_prefixes']['is_allowed']:
-                            is_user_disallowed = True
-                        else:
-                            is_assigned_to_user = True
+        for item in user_prefixes:
+            if bucket.startswith(item['prefix']):
+                app.logger.info(f">> item: {item}")
+                if item['user_prefixes']['user_id'] == self.user.user_id:
+                    if not item['user_prefixes']['is_allowed']:
+                        is_user_disallowed = True
                     else:
-                        is_assigned_to_another_user = True
+                        is_assigned_to_user = True
+                else:
+                    is_assigned_to_another_user = True
 
-            return not is_user_disallowed and (not is_assigned_to_another_user or is_assigned_to_user)
-
-        return True
+        return not is_user_disallowed and (not is_assigned_to_another_user or is_assigned_to_user)
