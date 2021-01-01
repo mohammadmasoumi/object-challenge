@@ -4,7 +4,7 @@ from flask import Blueprint
 from flask import request, make_response, jsonify
 from flask.views import MethodView
 
-from object_challenge import app
+from object_challenge import app, redis_store
 from object_challenge.base.mixins import AuthMixin
 from object_challenge.bucket.services import BucketService
 
@@ -77,6 +77,7 @@ class CacheBucketAPI(MethodView):
         """
 
         """
+        redis_store.get('key')
         app.logger.info("post request")
 
     def restore_cache(self):

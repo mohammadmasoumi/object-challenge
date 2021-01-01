@@ -18,6 +18,7 @@ def get_env_var(name, default=None, prefixed=False):
 PROJECT_NAME = 'object_challenge'
 REDIS_HOST = get_env_var('REDIS_CACHE_HOST', 'redis', prefixed=True)
 REDIS_PORT = get_env_var('REDIS_CACHE_PORT', 6379, prefixed=True)
+REDIS_DB = get_env_var('REDIS_CACHE_DB', 0, prefixed=True)
 
 
 class BaseConfig:
@@ -26,6 +27,7 @@ class BaseConfig:
     BEARER = 'Token'
     PROJECT_DIR = os.path.abspath(os.path.dirname(__file__))
     SECRET_KEY = os.getenv('SECRET_KEY', 'my_precious')
+    REDIS_URL = f"redis://:{REDIS_HOST}:{REDIS_PORT}/{REDIS_DB}"
 
 
 class DevelopmentConfig(BaseConfig):
