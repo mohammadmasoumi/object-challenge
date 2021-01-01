@@ -4,6 +4,43 @@
 
 This project is a technical challenge project which is powered by flask, docker and openresty.
 
+
+# project structure
+
+```
+├── config.py
+├── bucket
+│   ├── fixtures
+│   │   ├── user_prefixes.json
+│   │   ├── users.json
+│   │   └── prefixes.json
+│   ├── services
+│   │   ├── bucket.py
+│   │   ├── __init__.py
+│   ├── mongo_models
+│   │   ├── user.py
+│   │   ├── prefix.py
+│   │   ├── user_prefix.py
+│   │   ├── __init__.py
+│   ├── views
+│   │   ├── bucket.py
+│   │   ├── __init__.py
+│   ├── __init__.py
+│   ├── tests
+│   │   ├── test_config.py
+│   │   ├── test_bucket.py
+│   │   ├── base.py
+│   │   └── __init__.py
+├── __init__.py
+├── tree.py
+├── base
+│   ├── namedtuples.py
+│   ├── mixins.py
+│   ├── data_loader.py
+│   ├── __init__.py
+└── helper.py
+```
+
 # local setup
 
   - install requirements
