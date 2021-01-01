@@ -44,14 +44,18 @@ This project is a technical challenge project which is powered by flask, docker 
 # local setup
 
   - install requirements
-  ```shell script
+     ```shell script
     pip install -r requirements/development.txt
-  ```
+     ```
   - load env
-  ```shell script
+     ```shell script
     export  $(cat deployment/env_dir/flask.env | xargs)
-  ```
-
+     ```
+  - runserver
+     ```shell script
+    python manage.py runserver
+     ```
+    
 
 # server setup
 
@@ -65,27 +69,41 @@ This project is a technical challenge project which is powered by flask, docker 
  - ```
    docker-compose up -d 
    ```
-   
-   
+
 # flask shell
 
 This project use `flask-shell-ipython` as an interactive flask shell.
 ```shell script
-pip install flask-shell-ipython
-flask shell
+python manage.py shell
 ```
 
 # Commands
 
- - management commands
-    - for initializing fixtures you can use. `object_challenge/object_challenge/fixtures`
+- run server command
     ```shell script
-    flask manage initial
+    python manage.py runserver
     ``` 
+- run server command
+    ```shell script
+    python manage.py shell
+    ``` 
+- load initial data command. `object_challenge/object_challenge/fixtures`
+    ```shell script
+    python manage.py initial
+    ``` 
+    
+   
 
 # Resources
 
   - [How we reduced the CPU usage of our Lua code][1]
-  
+  - [tree structure in python][2]
+  - [flask-script][3]
+  - [flask][4]
+  - [lua-nginx][5]
   
 [1]: https://medium.com/@fabricebaumann/how-we-reduced-the-cpu-usage-of-our-lua-code-cc30d001a328
+[2]: https://stackoverflow.com/questions/9727673/list-directory-tree-structure-in-python
+[3]: https://flask-script.readthedocs.io/en/latest/
+[4]: https://flask.palletsprojects.com/en/1.1.x/
+[5]: https://www.nginx.com/resources/wiki/modules/lua/
