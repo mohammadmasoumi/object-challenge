@@ -59,8 +59,7 @@ class ArvanAPI(MethodView):
 
     def post(self):
         """
-
-        :return:
+        a mocked API for arvan s3 bucket creation
         """
         status_code = 200
         response_msg = {"result": "ok"}
@@ -70,6 +69,21 @@ class ArvanAPI(MethodView):
             f"[ArvanAPI]: response_msg: {response_msg} | status_code: {status_code} | post_data: {post_data}"
         )
         return make_response(jsonify(response_msg)), status_code
+
+
+class CacheBucketAPI(MethodView):
+
+    def post(self):
+        """
+
+        """
+        app.logger.info("post request")
+
+    def restore_cache(self):
+        """
+
+        """
+        app.logger.info("restore cache")
 
 
 # define blueprint
@@ -85,5 +99,11 @@ bucket_blueprint.add_url_rule(
 bucket_blueprint.add_url_rule(
     '/arvan',
     view_func=ArvanAPI.as_view('arvan_api'),
+    methods=['POST']
+)
+
+bucket_blueprint.add_url_rule(
+    '/cached_bucket',
+    view_func=CacheBucketAPI.as_view('cached_bucket_api'),
     methods=['POST']
 )

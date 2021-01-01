@@ -16,11 +16,12 @@ COV = coverage.coverage(
 COV.start()
 
 # register app
-from object_challenge import app, mongoengine, pymongo  # NOQA
+from object_challenge import app, mongoengine, pymongo, redis_store  # NOQA
 from object_challenge.helper import load_fixture  # NOQA
 
 mongoengine.init_app(app)
 pymongo.init_app(app)
+redis_store.init_app(app)
 
 manager = Manager(app)
 

@@ -17,7 +17,7 @@ def tree(dir_path: Path, prefix: str = ''):
     # contents each get pointers that are ├── with a final └── :
     pointers = [tee] * (len(contents) - 1) + [last]
     for pointer, path in zip(pointers, contents):
-        if not '__pycache__' in path.name:
+        if '__pycache__' not in path.name:
             yield prefix + pointer + path.name
             if path.is_dir():  # extend the prefix and recurse:
                 extension = branch if pointer == tee else space
