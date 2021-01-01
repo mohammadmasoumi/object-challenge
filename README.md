@@ -66,11 +66,11 @@ This project is a technical challenge project which is powered by flask, docker 
 └── helper.py
 ```
 
-### flask app
+### [flask app][200]
 
 flask app is defined under `object_challenge/__init__.py`
 
-### flask configurations
+### [flask configurations][201]
 
 flask app is defined under `object_challenge/config.py`
 
@@ -78,7 +78,7 @@ flask app is defined under `object_challenge/config.py`
 - **TestingConfig**
 - **ProductionConfig**
 
-### mongo models
+### [mongo models][202]
 
 mongo models are defined under `object_challenge/mongo_models` directory.
 
@@ -86,12 +86,41 @@ mongo models are defined under `object_challenge/mongo_models` directory.
 - **users**
 - **user_prefixes**
 
-### urls
+### [urls][203]
 
 |   endpoint  |   action    |                payloads                   |   
 |-------------|-------------|-------------------------------------------|
 | `/bucket`   |   'POST'    |  `{'bucket':'bucket_name'}`               |
 | `/arvan`    |   'POST'    |  `{'bucket':'bucket_name'}`               |
+
+### [lua middleware][204]
+
+a lua middleware that first send request to the **flask app** and then based on the response will decide whether send
+the response to the user or proxy pass the request to the **arvan's endpoints**
+
+### [fixtures][205]
+
+ - **prefixes.json**
+    ```
+    {"prefix_id": 1, "prefix":  "arvan"}
+    {"prefix_id": 2, "prefix":  "pushe"}
+    ```
+ - **users.json**
+    ```
+    {"user_id": 1, "name":  "a", "auth_token":  "token_1"}
+    {"user_id": 2, "name":  "b", "auth_token":  "token_2"}
+    {"user_id": 3, "name":  "c", "auth_token":  "token_3"}
+    ```
+ - **user_prefixes.json**
+    ```
+    {"user_id": 1, "prefix_id": 1,  "is_allowed":  true}
+    {"user_id": 1, "prefix_id": 2,  "is_allowed":  false}
+    {"user_id": 2, "prefix_id": 1,  "is_allowed":  true}
+    {"user_id": 2, "prefix_id": 2,  "is_allowed":  true}
+    ```
+
+
+
 
 ### sample request
 
@@ -105,6 +134,17 @@ curl -X POST \
 }'
 ```
 
+[200]: https://github.com/mohammadmasoumi/object_challenge/blob/master/object_challenge/__init__.py
+
+[201]: https://github.com/mohammadmasoumi/object_challenge/blob/master/object_challenge/config.py
+
+[202]: https://github.com/mohammadmasoumi/object_challenge/tree/master/object_challenge/bucket/mongo_models
+
+[203]: https://github.com/mohammadmasoumi/object_challenge/blob/master/object_challenge/bucket/views/bucket.py
+
+[204]: https://github.com/mohammadmasoumi/object_challenge/blob/master/deployment/data/lua/proxy_middleware.lua
+
+[205]: https://github.com/mohammadmasoumi/object_challenge/tree/master/object_challenge/bucket/fixtures
 
 # project diagram
 
@@ -168,6 +208,7 @@ python manage.py shell
 - [flask-script][3]
 - [flask][4]
 - [lua-nginx][5]
+- [lua-http][6]
 
 [1]: https://medium.com/@fabricebaumann/how-we-reduced-the-cpu-usage-of-our-lua-code-cc30d001a328
 
@@ -178,3 +219,5 @@ python manage.py shell
 [4]: https://flask.palletsprojects.com/en/1.1.x/
 
 [5]: https://www.nginx.com/resources/wiki/modules/lua/
+
+[6]: https://github.com/daurnimator/lua-http
