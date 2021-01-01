@@ -36,7 +36,10 @@ ngx.log(ngx.DEBUG, "response_headers" .. cjson.encode(response_headers))
 ngx.log(ngx.DEBUG, "response_status" .. cjson.encode(response_status))
 ngx.log(ngx.DEBUG, "error is:" .. cjson.encode(err))
 
+ngx.log(ngx.DEBUG, "logger:" .. res.status == 200)
+
 if res.status == 200 then
+    ngx.log(ngx.DEBUG, "Redirecting ...")
     ngx.location.capture("/redirect_to", {
         method = ngx.HTTP_POST,
         always_forward_body = true
