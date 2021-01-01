@@ -30,7 +30,6 @@ class AuthMixin:
         auth_header = request.headers.get('Authorization')
         if auth_header:
             bearer, token = auth_header.split(' ')
-            app.logger.info(f"token: {token} | bearer: {bearer}")
             if bearer == app.config['BEARER']:
                 if token:
                     user = self._fetch_user(token)

@@ -1,6 +1,6 @@
 import re
 
-from object_challenge import pymongo
+from object_challenge import app, pymongo
 
 __all__ = ('BucketService',)
 
@@ -49,6 +49,7 @@ class BucketService:
                 {'user_id': self.user.user_id, 'is_allowed': False}
             ]}}
         ]))
+        app.logger.info(f"user_prefixes: {user_prefixes}")
 
         if user_prefixes:
             is_user_disallowed = False

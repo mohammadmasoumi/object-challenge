@@ -4,8 +4,9 @@ from flask import Blueprint
 from flask import request, make_response, jsonify
 from flask.views import MethodView
 
-from object_challenge.bucket.services import BucketService
+from object_challenge import app
 from object_challenge.base.mixins import AuthMixin
+from object_challenge.bucket.services import BucketService
 
 logger = getLogger(__name__)
 
@@ -49,6 +50,7 @@ class BucketAPI(MethodView, AuthMixin):
         else:
             response_msg.update({"result": error})
 
+        app.logger.info(f"[BucketAPI]: response_msg: {response_msg} | status_code: {status_code}")
         return make_response(jsonify(response_msg)), status_code
 
 
@@ -62,6 +64,7 @@ class ArvanAPI(MethodView):
         status_code = 200
         response_msg = {"result": "ok"}
 
+        app.logger.info(f"[ArvanAPI]: response_msg: {response_msg} | status_code: {status_code}")
         return make_response(jsonify(response_msg)), status_code
 
 

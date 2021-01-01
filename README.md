@@ -89,7 +89,7 @@ python manage.py shell
     ``` 
 - load initial data command. `object_challenge/object_challenge/fixtures`
     ```shell script
-    python manage.py initial
+    python manage.py init
     ``` 
     
    
