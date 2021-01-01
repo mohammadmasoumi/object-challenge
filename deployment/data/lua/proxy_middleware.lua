@@ -31,19 +31,27 @@ local response_body = res.body
 local response_headers = res.headers
 local response_status = res.status
 
-ngx.log(ngx.DEBUG, "response_body" .. cjson.encode(response_body))
-ngx.log(ngx.DEBUG, "response_headers" .. cjson.encode(response_headers))
-ngx.log(ngx.DEBUG, "response_status" .. cjson.encode(response_status))
-ngx.log(ngx.DEBUG, "error is:" .. cjson.encode(err))
+ngx.log(ngx.DEBUG, "response_body: " .. cjson.encode(response_body))
+ngx.log(ngx.DEBUG, "response_headers: " .. cjson.encode(response_headers))
+ngx.log(ngx.DEBUG, "response_status: " .. cjson.encode(response_status))
+ngx.log(ngx.DEBUG, "error: " .. cjson.encode(err))
 
-ngx.log(ngx.DEBUG, "logger:" .. res.status == 200)
+ngx.log(ngx.DEBUG, "logger: " .. res.status == 200)
+ngx.log(ngx.DEBUG, "status type: " .. type(res.statue))
 
-if res.status == 200 then
+if res.status == "200" then
     ngx.log(ngx.DEBUG, "Redirecting ...")
-    ngx.location.capture("/redirect_to", {
+    local redirected_res = ngx.location.capture("/redirect_to", {
         method = ngx.HTTP_POST,
         always_forward_body = true
     })
+    ngx.log(ngx.DEBUG, "redirect res body: " .. cjson.encode(redirected_res.body))
+    ngx.log(ngx.DEBUG, "redirect res status: " .. cjson.encode(redirected_res.status))
+
+    ngx.status = redirected_res.status
+    ngx.say(redirected_res.body)
+    ngx.exit(ngx.HTTP_OK)
+
 else
     ngx.status = response_status
     ngx.say(response_body)

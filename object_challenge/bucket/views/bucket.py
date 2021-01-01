@@ -48,6 +48,7 @@ class BucketAPI(MethodView, AuthMixin):
                     status_code = 400
                     response_msg.update({"result": "not allowed"})
         else:
+            status_code = 400
             response_msg.update({"result": error})
 
         app.logger.info(f"[BucketAPI]: response_msg: {response_msg} | status_code: {status_code}")
