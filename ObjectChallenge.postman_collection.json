@@ -1,0 +1,52 @@
+{
+	"id": "3fa363fb-81db-a7d3-2170-d213a28d189b",
+	"name": "ObjectChallenge",
+	"description": "",
+	"order": [
+		"a1f83ba4-ed0e-7e0c-cf2a-ec14a4bda400"
+	],
+	"folders": [],
+	"folders_order": [],
+	"timestamp": 1609511382276,
+	"owner": "3109358",
+	"public": false,
+	"requests": [
+		{
+			"id": "a1f83ba4-ed0e-7e0c-cf2a-ec14a4bda400",
+			"headers": "Content-Type: application/json\nAuthorization: Token token_1\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "Authorization",
+					"value": "Token token_1",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "http://185.239.107.132/bucket",
+			"queryParams": [],
+			"pathVariables": {},
+			"pathVariableData": [],
+			"preRequestScript": null,
+			"method": "POST",
+			"collectionId": "3fa363fb-81db-a7d3-2170-d213a28d189b",
+			"data": [],
+			"dataMode": "raw",
+			"name": "http://185.239.107.132/bucket",
+			"description": "",
+			"descriptionFormat": "html",
+			"time": 1609511389317,
+			"version": 2,
+			"responses": [],
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"rawModeData": "{\n\t\"bucket\": \"pushe3\"\n}"
+		}
+	]
+}
