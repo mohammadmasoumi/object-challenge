@@ -30,8 +30,8 @@ class BucketService:
 
         # buckets at least should have 3 characters
         # we get 2 first characters for database lookup
-        bucket = data['bucket']
-        bucket_prefix = bucket[:2].lower()
+        bucket = data['bucket'].lower()
+        bucket_prefix = bucket[:2]
 
         # Note also that regex's anchored at the start (ie: starting with ^) are able to use indexes in the db,
         # and will run much faster in that case.
@@ -52,7 +52,7 @@ class BucketService:
             {'$unwind': '$user_prefixes'},
             {'$match': {'$or': [
                 {'user_prefixes.user_id': {'$ne': self.user.user_id}, 'user_prefixes.is_allowed': True},
-                {'user_prefixes.user_id': self.user.user_id, 'user_prefixes.is_allowed': False}
+                {'user_prefixes.user_id': self.user.user_id}
             ]}}
         ]))
 
